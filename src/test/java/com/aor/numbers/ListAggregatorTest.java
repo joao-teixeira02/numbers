@@ -19,10 +19,24 @@ public class ListAggregatorTest {
     }
 
     @Test
+    public void max_bug_8726() {
+        List<Integer> list = Arrays.asList(1,2,4,2);
+        class StubListDeduplicator implements GenericListDeduplicator{
+            @Override public List<Integer> deduplicate(List<Integer> list) {
+                return  Arrays.asList(1, 2, 4);
+            }
+        }
+        ListAggregator aggregator = new ListAggregator();
+        StubListDeduplicator deduplicator = new StubListDeduplicator();
+        int distinct = aggregator.distinct(list, deduplicator);
+        Assertions.assertEquals(3, distinct);
+    }
+
+    /*@Test
     public void max_bug_7263(){
         List<Integer> list = Arrays.asList(-1, -4, -5);
         Assertions.assertEquals(-1, aggregator.max(list));
-    }
+    }*/
 
     /*@Test
     public void distinct_bug_8726(){
@@ -54,11 +68,24 @@ public class ListAggregatorTest {
         Assertions.assertEquals(1, min);
     }
 
-    @Test
+    /*@Test
     public void distinct() {
 
         int distinct = aggregator.distinct(list);
 
+        Assertions.assertEquals(4, distinct);
+    }*/
+    @Test
+    public void distinct() {
+        //List<Integer> list = Arrays.asList(1,2,4,2,5);
+        class StubListDeduplicator implements GenericListDeduplicator{
+            @Override public List<Integer> deduplicate(List<Integer> list) {
+                return  Arrays.asList(1, 2, 4, 5);
+            }
+        }
+        ListAggregator aggregator = new ListAggregator();
+        StubListDeduplicator deduplicator = new StubListDeduplicator();
+        int distinct = aggregator.distinct(list, deduplicator);
         Assertions.assertEquals(4, distinct);
     }
 }
