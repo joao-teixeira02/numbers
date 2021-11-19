@@ -18,6 +18,17 @@ public class ListAggregatorTest {
         aggregator = new ListAggregator();
     }
 
+    @Test
+    public void max_bug_7263(){
+        List<Integer> list = Arrays.asList(-1, -4, -5);
+        Assertions.assertEquals(-1, aggregator.max(list));
+    }
+
+    /*@Test
+    public void distinct_bug_8726(){
+        List<Integer> list = Arrays.asList(1, 2, 4, 2);
+        Assertions.assertEquals(3, aggregator.distinct(list));
+    }*/
 
     @Test
     public void sum() {
