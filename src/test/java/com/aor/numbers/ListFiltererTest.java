@@ -21,6 +21,6 @@ public class ListFiltererTest {
 
         ListFilterer filterer = new ListFilterer(filter);
 
-        Assertions.assertEquals(Arrays.asList(3, 4), filterer.filter(Arrays.asList(-10, 3, 4)));
+        Assertions.assertEquals(Arrays.asList(3, 4), filterer.filter(Arrays.asList(-10, 3, -2, 4)));
     }
 }

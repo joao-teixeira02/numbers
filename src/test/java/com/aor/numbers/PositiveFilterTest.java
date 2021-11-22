@@ -10,5 +10,6 @@ public class PositiveFilterTest {
         Assertions.assertEquals(filterer.accept(-1), false);
         Assertions.assertEquals(filterer.accept(2), true);
         Assertions.assertEquals(filterer.accept(0), false);
+        Assertions.assertEquals(filterer.accept(20), true);
     }
 }
