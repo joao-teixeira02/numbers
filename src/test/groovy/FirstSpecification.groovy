@@ -1,3 +1,4 @@
+import com.aor.numbers.GenericListDeduplicator
 import spock.lang.Specification
 
 class FirstSpecification extends Specification {
@@ -26,5 +27,24 @@ class FirstSpecification extends Specification {
         then:
         thrown(IndexOutOfBoundsException)
         list.size() == 4
+    }
+    def "numbers to the power of two"(int a, int b, int c) {
+        expect:
+        Math.pow(a, b) == c
+        where:
+        a | b | c
+        1 | 2 | 1
+        2 | 2 | 4
+        3 | 2 | 9
+    }
+    def "bug 8726"() {
+        given:
+        def deduplicator = Mock(GenericListDeduplicator)
+        deduplicator.deduplicate(_) >>> [Arrays.asList(1, 2, 4), Arrays.asList(6, 7)]
+        when:
+        def result = deduplicator.deduplicate(Arrays.asList(1, 2, 4, 2))
+        def result1 = deduplicator.deduplicate(Arrays.asList(6, 7, 7))
+        then:
+        result == Arrays.asList(1,2,4)
     }
 }
