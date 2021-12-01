@@ -3,11 +3,12 @@ package com.aor.numbers;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * An utility class that removes duplicate numbers
- * from a list.
- */
 public class ListDeduplicator implements GenericListDeduplicator{
+
+    public GenericListSorter listSorter;
+    public ListDeduplicator(GenericListSorter listSorter){
+        this.listSorter = listSorter;
+    }
 
     /**
      * Removes duplicate numbers from a list.
@@ -16,7 +17,6 @@ public class ListDeduplicator implements GenericListDeduplicator{
      * change.
      */
     public List<Integer> deduplicate(List<Integer> list) {
-        ListSorter listSorter = new ListSorter();
         List<Integer> sorted = listSorter.sort(list);
         List<Integer> unique = new ArrayList<>();
 

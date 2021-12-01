@@ -16,13 +16,13 @@ public class ListDeduplicatorTest {
     @BeforeEach
     public void setUp() {
         list = Arrays.asList(1,2,4,2,5);
-        expected = Arrays.asList(1,2,4,5);
+        expected = Arrays.asList(1,2,4);
     }
     @Test
     public void bug_deduplicate_8726() {
         GenericListSorter sorter = Mockito.mock(GenericListSorter.class);
         Mockito.when(sorter.sort(Mockito.anyList())).thenReturn(Arrays.asList(1, 2, 2, 4));
-        ListDeduplicator deduplicator = new ListDeduplicator();
+        ListDeduplicator deduplicator = new ListDeduplicator(sorter);
         List<Integer> distinct = deduplicator.deduplicate(list);
         Assertions.assertEquals(expected, distinct);
     }

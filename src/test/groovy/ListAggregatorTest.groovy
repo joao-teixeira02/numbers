@@ -1,7 +1,6 @@
 import com.aor.numbers.GenericListDeduplicator
 import com.aor.numbers.ListAggregator
 import com.aor.numbers.ListDeduplicator
-import com.aor.numbers.ListSorter
 import spock.lang.Specification
 
 class ListAggregatorTest extends Specification{
@@ -38,10 +37,8 @@ class ListAggregatorTest extends Specification{
     def 'min test'() {
         given:
         def aggregator = new ListAggregator()
-
         when:
         def min = aggregator.min(list);
-
         then:
         min == 1
     }
@@ -49,10 +46,8 @@ class ListAggregatorTest extends Specification{
         given:
         def aggregator = new ListAggregator()
         def deduplicator = new ListDeduplicator()
-
         when:
         def distinct = aggregator.distinct(list, deduplicator);
-
         then:
         distinct == 4
     }

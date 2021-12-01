@@ -5,7 +5,6 @@ class DivisibleByFilterTest extends Specification {
     def "filter of 3"(n, bool) {
         given:
         def f1 = new DivisibleByFilter(3)
-        def f2 = new DivisibleByFilter(2)
         expect:
         f1.accept(n)==bool
         where:
